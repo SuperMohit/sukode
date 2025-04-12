@@ -1,0 +1,100 @@
+{
+  "name": "sukode-code-assistant",
+  "displayName": "Sukode Code Assistant",
+  "description": "VS Code extension with a chat interface for code assistance",
+  "version": "0.1.0",
+  "engines": {
+    "vscode": "^1.74.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "capabilities": {
+    "virtualWorkspaces": false,
+    "untrustedWorkspaces": {
+      "supported": false
+    }
+  },
+  "activationEvents": [],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "sukodeCodeAssistant.open",
+        "title": "Open Sukode Code Assistant",
+        "category": "Sukode"
+      }
+    ],
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "sukode-sidebar",
+          "title": "Sukode Assistant",
+          "icon": "media/sukode-icon.svg"
+        }
+      ]
+    },
+    "views": {
+      "sukode-sidebar": [
+        {
+          "type": "webview",
+          "id": "sukodeChatView",
+          "name": "Chat",
+          "visibility": "visible"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "Sukode Code Assistant",
+      "properties": {
+        "sukodeCodeAssistant.apiKey": {
+          "type": "string",
+          "default": "<>",
+          "description": "Cerebras API Key for AI features (required for the extension to work)"
+        },
+        "sukodeCodeAssistant.model": {
+          "type": "string",
+          "default": "llama-3.3-70b",
+          "enum": [
+            "llama-4-scout-17b-16e-instruct",
+            "llama-3.3-70b"
+          ],
+          "description": "Cerebras model to use for generating responses"
+        },
+        "sukodeCodeAssistant.useStreaming": {
+          "type": "boolean",
+          "default": false
+        },
+        "sukodeCodeAssistant.apiUrl": {
+          "type": "string",
+          "default": "https://api.cerebras.ai/v1",
+          "description": "Cerebras API URL"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src --ext ts"
+  },
+  "dependencies": {
+    "@cerebras/cerebras_cloud_sdk": "^1.29.0",
+    "axios": "^1.6.2",
+    "chromadb": "^2.2.0",
+    "highlight.js": "^11.9.0",
+    "markdown-it": "^14.0.0",
+    "Cerebras": "^4.28.0"
+  },
+  "devDependencies": {
+    "@types/markdown-it": "^14.1.2",
+    "@types/node": "^16.18.34",
+    "@types/vscode": "^1.74.0",
+    "@typescript-eslint/eslint-plugin": "^6.7.0",
+    "@typescript-eslint/parser": "^6.7.0",
+    "eslint": "^8.26.0",
+    "typescript": "^5.2.2"
+  }
+}
