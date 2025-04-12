@@ -1,4 +1,6 @@
-# Sukode Code Assistant 
+# Sukode Code Assistant
+
+![Sukode Logo](media/sukode.png)
 
 A Visual Studio Code extension that provides a chat interface for code assistance.
 
